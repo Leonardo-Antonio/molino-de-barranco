@@ -1,0 +1,41 @@
+$primary: #a4914f;
+$second: #000;
+
+@mixin button($bg: $primary, $width: 8rem, $height: 2rem, $rounded: 12px, $hover: $second) {
+  height: $height;
+  width: $width;
+  border-radius: $rounded;
+  background-color: $bg;
+  border: none;
+  transition: all 0.3s;
+  &:hover {
+    cursor: pointer;
+    background-color: $hover;
+    transition: all 0.3s;
+  }
+  font-family: 'Source Code Pro', monospace;
+}
+
+.btn-add {
+  @include button($primary, 3rem, 3rem, 50px);
+}
+
+.btn-delete {
+  @include button($primary, 2.2rem, 2.2rem, 50px);
+}
+
+.btn-edit {
+  @include button(#fff, 2.2rem, 2.2rem, 50px);
+}
+
+.btn-save {
+  @include button(#000, 100%, 2.3rem, 50px, $primary);
+  color: #fff;
+}
+
+.link {
+  a {
+    font-weight: bold;
+    color: #000;
+  }
+}

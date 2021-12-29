@@ -1,0 +1,105 @@
+$primary: #a4914f;
+$second: #000;
+
+.el-input__inner {
+  border-color: $primary;
+  border-radius: 50px;
+  height: 3rem;
+  font-family: 'Source Code Pro', monospace;
+  font-weight: normal;
+  &:focus {
+    border-color: $second;
+  }
+
+  &:hover {
+    border-color: $primary;
+  }
+}
+
+.el-input-number__decrease {
+  background: $primary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  border-radius: 25px 0 0 25px;
+
+  i {
+    color: #fff;
+  }
+
+  &:hover {
+    border-color: $primary;
+  }
+}
+
+.el-input-number__increase {
+  background: $primary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  border-radius: 0 25px 25px 0;
+
+  i {
+    color: #fff;
+  }
+
+  &:hover {
+    border-color: $primary;
+  }
+}
+
+.el-input {
+  input {
+    &:hover {
+      border-color: $primary;
+    }
+  }
+}
+
+.el-input-number__decrease:hover,
+.el-input-number__increase:hover {
+  border-color: $primary;
+}
+
+.el-input-number__decrease:hover:not(.is-disabled)
+  ~ .el-input
+  .el-input__inner:not(.is-disabled),
+.el-input-number__increase:hover:not(.is-disabled)
+  ~ .el-input
+  .el-input__inner:not(.is-disabled) {
+  border-color: $primary;
+}
+
+.el-select .el-input.is-focus .el-input__inner {
+  border-color: $primary !important;
+}
+
+.el-select-dropdown.is-multiple .el-select-dropdown__item.selected {
+  color: $primary;
+}
+
+.el-select:hover .el-input__inner {
+  border-color: $primary;
+}
+
+.container_categories_ops .el-radio__input.is-checked .el-radio__inner {
+  background-color: $primary;
+  border-color: $primary;
+}
+
+.el-radio__input.is-checked+.el-radio__label {
+  color: $second;
+  font-weight: bold;
+}
+
+
+.container_categories_ops .el-radio__label {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 1rem;
+}
+
+.container_categories_ops .el-radio {
+  padding: .5rem 0;
+}

@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Monda:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+@import 'component/btn';
+@import 'component/element';
+
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Source Code Pro', monospace;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+@for $i from 5 through 100 {
+  .w-#{$i} {
+    width: 0% + $i;
+  }
+
+  .h-#{$i} {
+    height: 0% + $i;
+  }
+
+  .hv-#{$i} {
+    height: 0vh + $i;
+  }
+}
+
+@for $i from 1 through 100 {
+  .z-#{$i} {
+    z-index: $i;
+  }
+  .p-#{$i} {
+    padding: 0rem + $i;
+  }
+
+  .pt-#{$i} {
+    padding-top: 0rem + $i;
+  }
+
+  .pb-#{$i} {
+    padding-bottom: 0rem + $i;
+  }
+
+  .pl-#{$i} {
+    padding-left: 0rem + $i;
+  }
+
+  .pr-#{$i} {
+    padding-right: 0rem + $i;
+  }
+
+  .px-#{$i} {
+    padding-left: 0rem + $i;
+    padding-right: 0rem + $i;
+  }
+
+  .py-#{$i} {
+    padding-top: 0rem + $i;
+    padding-bottom: 0rem + $i;
+  }
+}
+
+.flex {
+  display: flex;
+}
+
+.center-x {
+  justify-content: center;
+}
+
+.center-y {
+  align-items: center;
+}
+
+.between {
+  justify-content: space-between;
+}
+
+.container_btn__menu {
+  a {
+    text-decoration: none;
+  }
+  div {
+    color: #000;
+  }
+}
+
+.nuxt-link-exact-active,
+.nuxt-link-active {
+  div {
+    background: #a4914f;
+    border-radius: 15px;
+    color: #fff;
+  }
+}
+
+.color-white {
+  color: #fff;
+}
+
+.color-primary {
+  color: $primary;
+}
+
+.color-black {
+  color: #000;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.bg-black {
+  background-color: #000;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.spacer-lg {
+  height: 6rem;
+}
+
+.spacer-md {
+  height: 4rem;
+}
+
+.table-border {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+
+  overflow-y: scroll;
+  height: 48vh;
+}
+
+.state-active {
+  background-color: greenyellow;
+  border-radius: 50px;
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.state-inactive {
+  background-color: red;
+  border-radius: 50px;
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+tbody tr td div,
+thead tr th div {
+  text-align: center;
+}
+
+.card {
+  background: #ffffff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 2rem;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.el-upload--picture-card:hover,
+.el-upload:focus {
+  border-color: $primary;
+  color: $primary;
+}
+
+.el-upload--picture-card i {
+  color: $primary;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.container_store {
+  width: 90%;
+  margin: auto;
+  max-width: 1400px;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.container_cards {
+  flex-wrap: wrap;
+  gap: 1rem;
+}

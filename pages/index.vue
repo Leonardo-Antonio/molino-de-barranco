@@ -64,7 +64,10 @@
                     </p>
                   </div>
 
-                  <div>
+                  <div class="flex between">
+                    <div>
+                      <Amount :amount="item.amount" />
+                    </div>
                     <div class="flex flex-end">
                       <span>S./{{ item.price }}</span>
                     </div>
@@ -92,9 +95,11 @@
 </template>
 
 <script>
+import Amount from '../components/Btn/Number'
 import { mapMutations } from 'vuex'
 export default {
   layout: 'store',
+  components: {Amount},
   data() {
     return {
       search: '',
@@ -128,6 +133,8 @@ export default {
   methods: {
     ...mapMutations(['saveOrder']),
     addToOrder(item) {
+      console.log(this.data);
+      console.log(this.backup);
       this.saveOrder(item)
     },
     clear() {
@@ -179,7 +186,7 @@ h1 {
 
 .card_pdp {
   width: 15rem;
-  height: 20rem;
+  height: 21rem;
 
   .card_img {
     width: 100%;

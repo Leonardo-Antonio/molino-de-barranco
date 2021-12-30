@@ -39,3 +39,7 @@ $second: #000;
     color: #000;
   }
 }
+
+.btn-plus {
+  @include button(#000, 2rem, 2rem ,50px, $primary);
+}

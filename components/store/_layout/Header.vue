@@ -25,12 +25,61 @@
         <div class="w-100 flex center-x">
           <h1 class="title_detail">Detalle de orden</h1>
         </div>
+
+        <div>
+          <section
+            v-if="$store.state.order.length == 0"
+            class="flex center-x flex-col"
+          >
+            <div class="flex center-x"><img src="/images/bankrupt.png" alt="vacio" width="200px" /></div>
+            <div class="flex center-x"><h2>Pedido vacío</h2></div>
+          </section>
+          <section
+            v-else
+            v-for="(product, index) of $store.state.order"
+            :key="product._id"
+            class="flex flex-row"
+          >
+            <div class="w-30 relative">
+              <img
+                width="150px"
+                height="150px"
+                :src="product.src"
+                alt="imagen_del_producto"
+              />
+              <span class="absolute floating__amount">{{
+                product.amount
+              }}</span>
+            </div>
+            <div class="w-60">
+              <div class="flex flex-col">
+                <strong>{{ product.name }}</strong>
+                <strong>S./{{ product.price }}</strong>
+                {{ index }}
+              </div>
+            </div>
+            <div class="w-10">
+              <div class="flex flex-col center-x center-y h-100 around">
+                <div>
+                  <button @click="remove(index)" class="trash">
+                    <box-icon name="trash" color="#a4914f"></box-icon>
+                  </button>
+                </div>
+                <div class="flex flex-col">
+                  <button @click="sum(index)" class="sum">+</button>
+                  <button @click="min(index)" class="min">-</button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
       </div>
     </el-drawer>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   data() {
     return {
@@ -38,9 +87,7 @@ export default {
     }
   },
   methods: {
-    open() {
-      alert(1)
-    },
+    ...mapMutations(['sum', 'min', 'remove']),
   },
 }
 </script>
@@ -52,6 +99,43 @@ export default {
   &:hover {
     cursor: pointer;
   }
+}
+
+.floating__amount {
+  left: 0;
+  border-radius: 50px;
+  background: #000;
+  width: 1.5rem;
+  height: 1.5rem;
+  text-align: center;
+  color: #fff;
+}
+
+.trash,
+.min,
+.sum {
+  border: none;
+  background: #fff;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+}
+
+.min,
+.sum {
+  font-size: 1.3rem;
+  text-align: center;
+  color: #fff;
+}
+
+.min {
+  background: #a4914f;
+  border-radius: 0 0 50px 50px;
+}
+
+.sum {
+  background: #000;
+  border-radius: 50px 50px 0 0;
 }
 
 .title_detail {

@@ -171,7 +171,8 @@ export default {
         method: 'get',
       })
 
-      this.data = status == 200 ? data.data : []
+
+      this.data = status == 200 && data.data.length != 0 ? data.data : []
     } catch (error) {}
 
     try {

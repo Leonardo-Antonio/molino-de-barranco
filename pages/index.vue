@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="w-20 flex center-y flex-end link">
-        <nuxt-link to="/">Ver pedidos</nuxt-link>
+        <nuxt-link to="/pedidos">Ver pedidos</nuxt-link>
       </div>
     </div>
 
@@ -52,7 +52,7 @@
                     product.active == true &&
                     product.name.toLowerCase().includes(search.toLowerCase())
                 )"
-                :key="item"
+                :key="item._id"
                 shadow="hover"
                 class="card_pdp"
               >
@@ -66,7 +66,31 @@
 
                   <div class="flex between">
                     <div>
-                      <Amount :amount="item.amount" />
+                      <div>
+                        <div class="flex amount">
+                          <div>
+                            <button
+                              @click="item.amount++"
+                              class="flex center-x center-y btn-sum"
+                            >
+                              <box-icon name="plus" color="#fff"></box-icon>
+                            </button>
+                          </div>
+
+                          <div>
+                            <input type="number" v-model="item.amount" />
+                          </div>
+
+                          <div>
+                            <button
+                              @click="item.amount--"
+                              class="flex center-x center-y btn-min"
+                            >
+                              <box-icon name="minus" color="#fff"></box-icon>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div class="flex flex-end">
                       <span>S./{{ item.price }}</span>
@@ -99,7 +123,7 @@ import Amount from '../components/Btn/Number'
 import { mapMutations } from 'vuex'
 export default {
   layout: 'store',
-  components: {Amount},
+  components: { Amount },
   data() {
     return {
       search: '',
@@ -131,11 +155,10 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['saveOrder']),
+    ...mapMutations(['saveOrder', 'total']),
     addToOrder(item) {
-      console.log(this.data);
-      console.log(this.backup);
       this.saveOrder(item)
+      this.total(item.price * item.amount)
     },
     clear() {
       this.data = this.backup
@@ -171,7 +194,7 @@ export default {
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss">
 .container_categories_ops {
   display: flex;
   flex-direction: column;
@@ -213,5 +236,39 @@ h1 {
   width: 1rem;
   border-radius: 50px;
   border: 1px solid #000;
+}
+
+.amount {
+  border: 1px solid #a4914f;
+  border-radius: 50px;
+  input {
+    width: 2rem;
+    height: 1.8rem;
+    border: none;
+    text-align: center;
+  }
+
+  input:focus-visible {
+    border: none;
+    outline: none;
+  }
+
+  .btn-sum {
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 50px 0 0 50px;
+    background: #a4914f;
+  }
+
+  .btn-min {
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 0 50px 50px 0;
+    background: #a4914f;
+  }
 }
 </style>

@@ -21,17 +21,19 @@
       :visible.sync="drawer"
       :with-header="false"
     >
-      <div class="p-2">
+      <div class="flex flex-col between h-100">
         <div class="w-100 flex center-x">
           <h1 class="title_detail">Detalle de orden</h1>
         </div>
 
-        <div>
+        <div class="h-100 p-2">
           <section
             v-if="$store.state.order.length == 0"
             class="flex center-x flex-col"
           >
-            <div class="flex center-x"><img src="/images/bankrupt.png" alt="vacio" width="200px" /></div>
+            <div class="flex center-x">
+              <img src="/images/bankrupt.png" alt="vacio" width="200px" />
+            </div>
             <div class="flex center-x"><h2>Pedido vacío</h2></div>
           </section>
           <section
@@ -73,6 +75,32 @@
             </div>
           </section>
         </div>
+
+        <div class="bg-black">
+          <div class="p-2">
+            <div>
+              <el-input
+                type="textarea"
+                :rows="2"
+                placeholder="Número de mesa o indentificador del pedido"
+                v-model="nick"
+              />
+            </div>
+
+            <div class="flex flex-row center-y pt-1">
+              <button class="btn_calc" @click="total">Calcular total:</button>
+              <strong
+                ><h3 class="pl-2 color-white">S./{{ price_final }}</h3></strong
+              >
+            </div>
+
+            <div class="pt-1 pb-1">
+              <button @click="finish" class="btn_finish__order">
+                Realizar pedido
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </el-drawer>
   </div>
@@ -84,21 +112,78 @@ export default {
   data() {
     return {
       drawer: false,
+      price_final: 0,
+      nick: '',
     }
   },
   methods: {
     ...mapMutations(['sum', 'min', 'remove']),
+    total() {
+      let total = 0
+      this.$store.state.order.forEach((product) => {
+        total += product.price * product.amount
+      })
+
+      this.price_final = total
+    },
+
+    async finish() {
+      try {
+        let ids = []
+        this.$store.state.order.forEach((product) => ids.push(product._id))
+        console.log(ids)
+        const { status } = await this.$api({
+          url: '/sales',
+          method: 'post',
+          data: {
+            products: this.$store.state.order,
+            nick: this.nick,
+          },
+        })
+
+        if (status == 201) {
+          this.$router.push('/pedidos')
+        }
+      } catch (error) {}
+    },
   },
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .cart {
   border: none;
   background: rgba(0, 0, 0, 0);
   &:hover {
     cursor: pointer;
   }
+}
+
+button {
+  cursor: pointer;
+  font-family: 'Source Code Pro';
+}
+
+.btn_finish__order {
+  width: 100%;
+  height: 3rem;
+  border: none;
+  border-radius: 50px;
+  background: #a4914f;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.btn_calc {
+  border: 2px solid #a4914f;
+  background: #fff;
+  border-radius: 50px;
+  width: 10rem;
+  height: 3rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  font-family: 'Source Code Pro';
+  cursor: pointer;
 }
 
 .floating__amount {

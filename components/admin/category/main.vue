@@ -105,12 +105,14 @@ export default {
   props: ['search'],
 
   async mounted() {
-    const { data, status } = await this.$api({
-      url: '/categories',
-      method: 'get',
-    })
+    try {
+      const { data, status } = await this.$api({
+        url: '/categories',
+        method: 'get',
+      })
 
-    this.data = status == 200 && data.data.length != 0 ? data.data : []
+      this.data = status == 200 && data.data.length != 0 ? data.data : []
+    } catch (error) {}
   },
 
   methods: {

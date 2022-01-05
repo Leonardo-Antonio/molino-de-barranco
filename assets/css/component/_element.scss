@@ -103,3 +103,12 @@ $second: #000;
 .container_categories_ops .el-radio {
   padding: .5rem 0;
 }
+
+.el-textarea__inner:focus {
+  border-color: $primary;
+}
+
+.el-radio__input.is-checked .el-radio__inner {
+  background-color: #a4914f;
+  border-color: $primary;
+}

@@ -11,6 +11,7 @@ export default function ({ $axios, redirect }, inject) {
 
   instance.onResponse((response) => {
     if (response.status == 201) {
+      if (response.config.url == '/sales') return
       Notification.success({
         title: `Mensaje`,
         message: `Creado correctamente`,

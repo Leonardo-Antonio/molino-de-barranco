@@ -18,11 +18,11 @@
           </div>
 
           <div class="pb-2">
-            <el-input
+            <!-- <el-input
               placeholder="Enviar detalle al email."
               v-model="email"
               clearable
-            />
+            /> -->
           </div>
 
           <section v-show="type == '2'" class="pb-2">
@@ -190,7 +190,7 @@ export default {
       show: false,
       products: [],
       ruc: '',
-      infoRuc: {},
+      infoRuc: { ok: false },
     }
   },
 
@@ -251,6 +251,16 @@ export default {
           }
 
           await this.desactive(status == 200, this.data._id)
+
+          if (this.infoRuc.ok === undefined) {
+            this.$router.push(
+              '/ticket/fac?id=' + this.$router.currentRoute.params.id
+            )
+          } else {
+            this.$router.push(
+              '/ticket/boleta?id=' + this.$router.currentRoute.params.id
+            )
+          }
         }
         await update()
       } catch (error) {}
@@ -282,7 +292,7 @@ export default {
           url: `/sales/search/${this.$router.currentRoute.params.id}`,
           method: 'get',
         })
-
+        console.log(data)
         this.data = status == 200 ? data.data : { products: [] }
       } catch (error) {}
     },

@@ -1,6 +1,14 @@
 <template>
   <div>
-    <h1>DINERO GANADO EL DÏA DE HOY - DINERO EN CAJA</h1>
+    <h1>
+      Ver ganancia del día.
+      <el-date-picker
+        v-model="date"
+        @change="moneyCajaCurrent"
+        type="date"
+        placeholder="Pick a day"
+      />
+    </h1>
     <h1 style="font-size: 6rem">S./{{ total }}</h1>
   </div>
 </template>
@@ -11,6 +19,7 @@ export default {
   data() {
     return {
       total: 0,
+      date: '',
     }
   },
 
@@ -21,7 +30,8 @@ export default {
   methods: {
     async moneyCajaCurrent() {
       try {
-        const date = new Date().toLocaleDateString('en-PE').split('/')
+        this.total = 0
+        const date = new Date(this.date).toLocaleDateString('en-PE').split('/')
         let dateCurrent = ''
         if (date[2].length == 1) dateCurrent += '0' + date[2]
         else dateCurrent += date[2]

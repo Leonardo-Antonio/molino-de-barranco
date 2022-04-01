@@ -30,7 +30,7 @@ export default {
         { text: 'Inicio', url: '/info', icon: '' },
         { text: 'Categorias', url: '/categorias', icon: '' },
         { text: 'Productos', url: '/productos', icon: '' },
-        { text: 'Reportes', url: '/reportes', icon: '' },
+        { text: 'Caja', url: '/caja', icon: '' },
       ],
     }
   },

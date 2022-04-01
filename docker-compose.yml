@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  web-molino-barranco:
+    image: leo2001/web-molino-barranco:v1
+    restart: always
+    ports:
+      - 3000:3000

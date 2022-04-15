@@ -46,7 +46,7 @@
                 :key="product._id"
               >
                 <td>
-                  {{ product.amount }} {{ product.name }} sdsad asdasd asd asds
+                  {{ product.amount }} {{ product.name }}
                 </td>
                 <td>{{ product.price }}</td>
                 <td>{{ product.price * product.amount }}</td>

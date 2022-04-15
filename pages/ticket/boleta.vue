@@ -31,12 +31,12 @@
         <p class="text-center">--------------------</p>
 
         <div>
-          <table class="table-auto text-sm font">
+          <table class="table-auto text-sm font w-100">
             <thead>
               <tr style="font-size: 10px">
-                <th>Descripción</th>
-                <th>Uni.</th>
-                <th>Imp.</th>
+                <th class="text-left">Descripción</th>
+                <th class="text-left">Uni.</th>
+                <th class="text-left">Imp.</th>
               </tr>
             </thead>
             <tbody>

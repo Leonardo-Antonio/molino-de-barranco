@@ -20,8 +20,8 @@
         </div>
         <div class="text-center">
           <p style="font-size: 11px">
-            EL MOLINO DE BARRANCO S.A.C <br />
-            RUC: 2054551681855 <br />
+            EL MOLINO DE BARRANCO <br />
+            RUC: 10066474602 <br />
             NICOLAS DE PIEROLA - BARRANCO
           </p>
         </div>
